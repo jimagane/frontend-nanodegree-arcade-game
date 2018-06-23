@@ -1,3 +1,4 @@
+let score = 0;
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -33,7 +34,7 @@ class Player {
     }
 
     render() {
-      ctx.drawImage(Resources.get(this.icon), this.x, this.y);
+        ctx.drawImage(Resources.get(this.icon), this.x, this.y);
     }
 
     handleInput(action) {
@@ -49,7 +50,18 @@ class Player {
       if (action == 'right' && this.x < 400) {
         this.x += 100;
       }
+      if (this.y < 0) {
+        this.resetPlayer();
+      }
     }
+
+    resetPlayer() {
+      setTimeout(function() {
+        player.x = 200;
+        player.y = 400;
+      }, 250);
+    }
+
 }
 
 var allEnemies = [];
