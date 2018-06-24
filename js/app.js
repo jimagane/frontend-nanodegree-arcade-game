@@ -1,26 +1,36 @@
 let score = 0;
-// Enemies our player must avoid
-var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
-};
+class Enemy {
+    constructor(x, y, speed) {
+      this.x = x;
+      this.y = y;
+      this.speed = speed;
+      this.sprite = 'images/enemy-bug.png';
+    }
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-};
+    update(dt) {
+      this.x += this.speed;
+      // You should multiply any movement by the dt parameter
+      // which will ensure the game runs at the same speed for
+      // all computers.
+      this.checkCollisions();
+    }
 
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+    render() {
+      ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+
+    checkCollisions() {
+      if ((this.x-70 <= player.x && this.x+90>= player.x) && this.y == player.y) {
+        player.resetPlayer();
+      }
+    }
+}
+
+var enemy1 = new Enemy(-100, 60, 1);
+var enemy2 = new Enemy(-100, 145, 2);
+var enemy3 = new Enemy(-100, 230, 3);
+
 
 class Player {
     constructor(x=200, y=400) {
@@ -61,11 +71,11 @@ class Player {
         player.y = 400;
       }, 250);
     }
-
 }
 
-var allEnemies = [];
+var allEnemies = [enemy1, enemy2, enemy3];
 var player = new Player();
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. Provided by Udacity for this project.
