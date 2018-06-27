@@ -10,6 +10,9 @@ class Enemy {
 
     update(dt) {
       this.x += this.speed;
+      if(this.x > 600) {
+        this.x = -1000;
+      }
       // You should multiply any movement by the dt parameter
       // which will ensure the game runs at the same speed for
       // all computers.
@@ -21,16 +24,24 @@ class Enemy {
     }
 
     checkCollisions() {
-      if ((this.x-70 <= player.x && this.x+90>= player.x) && this.y == player.y) {
+      if ((this.x-70 <= player.x && this.x+80>= player.x) && this.y == player.y) {
         player.resetPlayer();
       }
     }
 }
 
-var enemy1 = new Enemy(-100, 60, 1);
-var enemy2 = new Enemy(-100, 145, 2);
-var enemy3 = new Enemy(-100, 230, 3);
-
+var enemy1 = new Enemy(-100, 60, Math.random()*5);
+var enemy2 = new Enemy(-100, 145, Math.random()*5);
+var enemy3 = new Enemy(-100, 230, Math.random()*5);
+var enemy4 = new Enemy(-300, 60, Math.random()*5);
+var enemy5 = new Enemy(-300, 145, Math.random()*5);
+var enemy6 = new Enemy(-300, 230, Math.random()*5);
+var enemy7 = new Enemy(-600, 60, Math.random()*5);
+var enemy8 = new Enemy(-600, 145, Math.random()*5);
+var enemy9 = new Enemy(-600, 230, Math.random()*5);
+var enemy10 = new Enemy(-900, 60, Math.random()*5);
+var enemy11 = new Enemy(-900, 145, Math.random()*5);
+var enemy12 = new Enemy(-900, 230, Math.random()*5);
 
 class Player {
     constructor(x=200, y=400) {
@@ -40,7 +51,9 @@ class Player {
     }
 
     update(dt) {
-
+      if (this.y < 0) {
+        player.resetPlayer();
+      }
     }
 
     render() {
@@ -60,20 +73,21 @@ class Player {
       if (action == 'right' && this.x < 400) {
         this.x += 100;
       }
-      if (this.y < 0) {
-        this.resetPlayer();
-      }
     }
 
     resetPlayer() {
       setTimeout(function() {
+        if (player.y < 0) {
+          score += 1;
+          console.log(score);
+        }
         player.x = 200;
         player.y = 400;
-      }, 250);
+      }, 50);
     }
 }
 
-var allEnemies = [enemy1, enemy2, enemy3];
+var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9, enemy10, enemy11, enemy12];
 var player = new Player();
 
 
