@@ -1,3 +1,28 @@
 body {
     text-align: center;
 }
+
+.scorekeeper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.score {
+    width: 50%;
+}
+
+.lives {
+    width: 50%;
+}
+
+.char {
+    padding: 0.8em;
+}
+
+.char:hover {
+    cursor: pointer;
+}
+
+.show {
+    display: none;
+}
