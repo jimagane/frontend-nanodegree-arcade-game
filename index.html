@@ -6,29 +6,65 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <section>
-      <h4 class="players">Pick your player:</h4>
-        <img class="char" id="images/char-boy.png" src="images/boy.png", alt="boy">
-        <img class="char" id="images/char-cat-girl.png" src="images/catgirl.png", alt="catgirl">
-        <img class="char" id="images/char-horn-girl.png" src="images/horngirl.png", alt="horngirl">
-        <img class="char" id="images/char-pink-girl.png" src="images/pinkgirl.png", alt="pinkgirl">
-        <img class="char" id="images/char-princess-girl.png" src="images/princessgirl.png", alt="princessgirl">
-    </section>
-    <section class="scorekeeper">
-      <div class="lives">
-        <h4>Lives:</h4>
-          <img class="heart" src="images/heartlife.png", alt="heart">
-          <img class="heart" src="images/heartlife.png", alt="heart">
-          <img class="heart" src="images/heartlife.png", alt="heart">
-          <img class="heart" src="images/heartlife.png", alt="heart">
-      </div>
-      <div class="score">
-        <h4>Score:</h4>
-          <span class="scorenumber">0</span>
-      </div>
-    </section>
+    <header>
+      <section class="statKeeper">
+        <div class="lifes">
+          <h4 class="lifesHeader">Lifes Left:</h4>
+            <img class="heart" src="images/heartlife.png", alt="heart">
+            <img class="heart" src="images/heartlife.png", alt="heart">
+            <img class="heart" src="images/heartlife.png", alt="heart">
+            <img class="heart" src="images/heartlife.png", alt="heart">
+        </div>
+        <div class="score">
+          <h4 class="scoreHeader">Score:</h4>
+            <span class="scorenumber">0</span>
+        </div>
+      </section>
+      <section class="playerMenu">
+        <h4 class="playerHeader">Pick your player:</h4>
+        <div class="character">
+          <img class="char" id="images/char-boy.png" src="images/boy.png", alt="boy">
+          <img class="char" id="images/char-cat-girl.png" src="images/catgirl.png", alt="catgirl">
+          <img class="char" id="images/char-horn-girl.png" src="images/horngirl.png", alt="horngirl">
+          <img class="char" id="images/char-pink-girl.png" src="images/pinkgirl.png", alt="pinkgirl">
+          <img class="char" id="images/char-princess-girl.png" src="images/princessgirl.png", alt="princessgirl">
+        </div>
+        <div class="selector">
+          <img class="select" id="box1" src="images/Selector.png", alt="selector">
+          <img class="select show" id="box2" src="images/Selector.png", alt="selector">
+          <img class="select show" id="box3" src="images/Selector.png", alt="selector">
+          <img class="select show" id="box4" src="images/Selector.png", alt="selector">
+          <img class="select show" id="box5" src="images/Selector.png", alt="selector">
+        </div>
+      </section>
+    </header>
+
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
+
+    <section class="bonusPoints">
+      <h4 class="bonusHeader">Bonus Points:</h4>
+        <div class="bp">
+          <img src="images/bluegem.png", alt="blue gem">
+          <span id="blue">+10</span>
+        </div>
+        <div class="bp">
+          <img src="images/greengem.png", alt="green gem">
+          <span id="green">+20</span>
+        </div>
+        <div class="bp">
+          <img src="images/orangegem.png", alt="orange gem">
+          <span id="orange">+30</span>
+        </div>
+        <div class="bp">
+          <img src="images/keythumb.png", alt="key">
+          <span id="key">+100</span>
+        </div>
+        <div class="bp">
+          <img src="images/starthumb.png", alt="star">
+          <span id="star">+1000</span>
+        </div>
+    </section>
 </body>
 </html>

@@ -1,22 +1,56 @@
 body {
     text-align: center;
+    font-family: courier, arial, helvetica, sans-serif;
 }
 
-.scorekeeper {
+.playerHeader {
+    margin: 0;
+}
+
+.statKeeper {
     display: flex;
     flex-wrap: wrap;
 }
 
+.lifes {
+    width: 40%;
+    margin-left: 10%;
+}
+
+.lifesHeader {
+    margin: 0;
+}
+
 .score {
-    width: 50%;
+    width: 45%;
+    margin-right: 5%;
 }
 
-.lives {
-    width: 50%;
+.scoreHeader {
+    margin: 0;
 }
 
-.char {
+.bonusPoints {
+    float: left;
+    width: 90px;
+    border: solid;
+    margin-top: 8%;
+    margin-left: 2%;
+}
+
+.bonusHeader {
+    margin: 0;
+}
+
+span {
+    margin-right: 2%;
+    text-align: left;
+    vertical-align: 50%;
+}
+
+.char, .select {
     padding: 0.8em;
+    padding-bottom: 0;
 }
 
 .char:hover {
@@ -24,5 +58,42 @@ body {
 }
 
 .show {
-    display: none;
+    opacity: 0;
+}
+
+.select {
+    padding-top: 0;
+    padding-left: 0.9em;
+}
+
+.selector {
+    width: 99%;
+}
+
+@media screen and (min-width: 620px) {
+    header {
+      margin-left: 12%;
+      width: 90%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .bonusPoints {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 0;
+        margin-bottom: 5%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .bonusHeader {
+        width: 100%;
+    }
+
+    .bp {
+        width: 20%;
+    }
+
 }

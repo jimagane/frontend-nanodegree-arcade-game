@@ -1,11 +1,15 @@
 let score = 0;
 let scorelog = document.querySelector('.scorenumber');
 let heartStatus = document.querySelectorAll('.heart');
-let heartlog = document.querySelectorAll('.show');
+let heartlog = [];
 let allIcons = document.querySelectorAll('.char');
 let icon ='images/char-boy.png';
-
-
+let collision = 0;
+var box1=document.querySelector('#box1');
+var box2=document.querySelector('#box2');
+var box3=document.querySelector('#box3');
+var box4=document.querySelector('#box4');
+var box5=document.querySelector('#box5');
 
 class Enemy {
     constructor(x, y, speed) {
@@ -64,12 +68,8 @@ class Player {
       }
       scorelog.innerText = score;
 
-      allIcons.forEach(function(selectedPlayer) {
-      selectedPlayer.addEventListener('click', function(e) {
-        player.icon = this.id;
-        
-      })
-      });
+      player.choosePlayer();
+      heartCheck();
     }
 
     render() {
@@ -96,6 +96,9 @@ class Player {
         if (player.y < 0) {
           score += 1;
         }
+        if (player.y > 0 && player.y < 315) {
+          heartlog.push(1);
+        }
         player.x = 200;
         player.y = 400;
       }, 50);
@@ -105,7 +108,8 @@ class Player {
       allIcons.forEach(function(selectedPlayer) {
         selectedPlayer.addEventListener('click', function(e) {
           player.icon=this.id;
-          return this.id;
+          checkPlayer();
+
         })
     });
     }
@@ -129,6 +133,8 @@ class SpecialItem {
       // which will ensure the game runs at the same speed for
       // all computers.
       this.checkCollisions();
+
+
     }
 
     render() {
@@ -139,7 +145,11 @@ class SpecialItem {
       if ((this.x-70 <= player.x && this.x+80>= player.x) && this.y == player.y) {
         setTimeout(this.x = -10000, 100);
         score += this.points;
+        if (this.points == 0) {
+          heartlog.pop();
+        }
       }
+
     }
 }
 var allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9, enemy10, enemy11, enemy12];
@@ -148,10 +158,11 @@ var player = new Player(200, 400, icon);
 var blueGem = new SpecialItem(-500, 60, Math.random()*5, 'images/Gem Blue.png', 10);
 var greenGem = new SpecialItem(-1200, 230, Math.random()*5, 'images/Gem Green.png', 20);
 var orangeGem = new SpecialItem(-1800, 145, Math.random()*5, 'images/Gem Orange.png', 30);
-var heart = new SpecialItem(-1000, 60, Math.random()*5, 'images/Heart.png');
 var key = new SpecialItem(-3000, 145, Math.random()*5, 'images/Key.png', 100);
 var star = new SpecialItem(-8000, 60, Math.random()*5, 'images/Star.png', 1000);
-var bonusItems = [blueGem, greenGem, orangeGem, key, star];
+var heart = new SpecialItem(-100, 230, Math.random()*5, 'images/Heart.png', 0);
+
+var bonusItems = [blueGem, greenGem, orangeGem, key, star, heart];
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. Provided by Udacity for this project.
 document.addEventListener('keyup', function(e) {
@@ -164,3 +175,84 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+function checkPlayer(){
+if(player.icon=="images/char-boy.png"){
+  box1.classList.remove('show');
+  box2.classList.add('show');
+  box3.classList.add('show');
+  box4.classList.add('show');
+  box5.classList.add('show');
+}
+if(player.icon=="images/char-cat-girl.png"){
+  box1.classList.add('show');
+  box2.classList.remove('show');
+  box3.classList.add('show');
+  box4.classList.add('show');
+  box5.classList.add('show');
+}if(player.icon=='images/char-horn-girl.png'){
+  box1.classList.add('show');
+  box2.classList.add('show');
+  box3.classList.remove('show');
+  box4.classList.add('show');
+  box5.classList.add('show');
+}if(player.icon=='images/char-pink-girl.png'){
+  box1.classList.add('show');
+  box2.classList.add('show');
+  box3.classList.add('show');
+  box4.classList.remove('show');
+  box5.classList.add('show');
+}if(player.icon=='images/char-princess-girl.png'){
+  box1.classList.add('show');
+  box2.classList.add('show');
+  box3.classList.add('show');
+  box4.classList.add('show');
+  box5.classList.remove('show');
+}}
+
+function heartCheck() {
+  if (heartlog.length == 0) {
+    heartStatus[3].classList.remove('show');
+    heartStatus[2].classList.remove('show');
+    heartStatus[1].classList.remove('show');
+    heartStatus[0].classList.remove('show');
+    // return heartlog;
+  }
+  if (heartlog.length == 1) {
+    heartStatus[3].classList.add('show');
+    heartStatus[2].classList.remove('show');
+    heartStatus[1].classList.remove('show');
+    heartStatus[0].classList.remove('show');
+    // return heartlog;
+  }
+  if (heartlog.length == 2) {
+    heartStatus[3].classList.add('show');
+    heartStatus[2].classList.add('show');
+    heartStatus[1].classList.remove('show');
+    heartStatus[0].classList.remove('show');
+    // return heartlog;
+  }
+  if (heartlog.length == 3) {
+    heartStatus[3].classList.add('show');
+    heartStatus[2].classList.add('show');
+    heartStatus[1].classList.add('show');
+    heartStatus[0].classList.remove('show');
+    // return heartlog;
+  }
+  if (heartlog.length == 4) {
+    heartStatus[3].classList.add('show');
+    heartStatus[2].classList.add('show');
+    heartStatus[1].classList.add('show');
+    heartStatus[0].classList.add('show');
+    setTimeout(alert(`Game Over!
+ Score: ${score}
+
+Play Again?`), 200);
+    heartStatus[0].classList.remove('show');
+    heartStatus[1].classList.remove('show');
+    heartStatus[2].classList.remove('show');
+    heartStatus[3].classList.remove('show');
+    heartlog=[];
+    score=0;
+  }
+
+}
