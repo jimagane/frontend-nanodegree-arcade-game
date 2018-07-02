@@ -5,8 +5,7 @@ Creates a game canvas of enemies and special objects player must navigate throug
 ## Getting Started
 
 Arcade game project can be cloned from github repository:
-https://github.com/jimagane/memory_game_project.git
-
+https://github.com/jimagane/frontend-nanodegree-arcade-game.git
 ### Prerequisites
 
 Use text editor to edit HTML, CSS, and JavaScript resource, engine, and app code and a web browser to view and play project game.
@@ -28,10 +27,6 @@ Refresh browser page to test modified code.
 This repository for memory game project is for Udacity Front-End Web Developer Nanodegree course. Therefore, will not be accepting pull requests at this time.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## Dependencies
-
-
 
 ## Acknowledgements
 
