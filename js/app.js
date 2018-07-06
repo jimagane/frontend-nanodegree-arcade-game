@@ -1,14 +1,5 @@
 let score = 0;
-let scorelog = document.querySelector('.scorenumber');
 let heartlog = [];
-let heartStatus = document.querySelectorAll('.heart');
-let icon = 'images/char-boy.png';
-let allIcons = document.querySelectorAll('.char');
-let box1 = document.querySelector('#box1');
-let box2 = document.querySelector('#box2');
-let box3 = document.querySelector('#box3');
-let box4 = document.querySelector('#box4');
-let box5 = document.querySelector('#box5');
 
 class Enemy {
     constructor(x, y, speed) {
@@ -66,6 +57,7 @@ class Player {
             this.resetPlayer();
         }
         // Update score in header
+        let scorelog = document.querySelector('.scorenumber');
         scorelog.innerText = score;
         // Update player selection in header
         this.choosePlayer();
@@ -110,6 +102,7 @@ class Player {
 
     choosePlayer() {
         const self = this;
+        let allIcons = document.querySelectorAll('.char');
         allIcons.forEach(function(selectedPlayer) {
             selectedPlayer.addEventListener('click', function(e) {
               self.icon = this.id;
@@ -120,6 +113,7 @@ class Player {
 
     // Updates number of hearts in header as well as game over condition
     heartCheck() {
+        let heartStatus = document.querySelectorAll('.heart');
         if (heartlog.length == 0) {
             heartStatus[3].classList.remove('show');
             heartStatus[2].classList.remove('show');
@@ -164,35 +158,40 @@ class Player {
 
     // Displays selector image under selected character in header.
     checkPlayer() {
-        if (player.icon == "images/char-boy.png") {
+        let box1 = document.querySelector('#box1');
+        let box2 = document.querySelector('#box2');
+        let box3 = document.querySelector('#box3');
+        let box4 = document.querySelector('#box4');
+        let box5 = document.querySelector('#box5');
+        if (this.icon == "images/char-boy.png") {
             box1.classList.remove('show');
             box2.classList.add('show');
             box3.classList.add('show');
             box4.classList.add('show');
             box5.classList.add('show');
         }
-        if (player.icon == "images/char-cat-girl.png") {
+        if (this.icon == "images/char-cat-girl.png") {
             box1.classList.add('show');
             box2.classList.remove('show');
             box3.classList.add('show');
             box4.classList.add('show');
             box5.classList.add('show');
         }
-        if (player.icon == 'images/char-horn-girl.png') {
+        if (this.icon == 'images/char-horn-girl.png') {
             box1.classList.add('show');
             box2.classList.add('show');
             box3.classList.remove('show');
             box4.classList.add('show');
             box5.classList.add('show');
         }
-        if (player.icon == 'images/char-pink-girl.png') {
+        if (this.icon == 'images/char-pink-girl.png') {
             box1.classList.add('show');
             box2.classList.add('show');
             box3.classList.add('show');
             box4.classList.remove('show');
             box5.classList.add('show');
         }
-        if (player.icon == 'images/char-princess-girl.png') {
+        if (this.icon == 'images/char-princess-girl.png') {
             box1.classList.add('show');
             box2.classList.add('show');
             box3.classList.add('show');
@@ -202,7 +201,7 @@ class Player {
     }
 }
 
-let player = new Player(200, 400, icon);
+let player = new Player(200, 400, 'images/char-boy.png');
 
 class SpecialItem {
     constructor(x, y, speed, sprite, points) {
@@ -252,9 +251,9 @@ let key3 = new SpecialItem(-20000, 60, Math.random()*5, 'images/Key.png', 100);
 let star = new SpecialItem(-8000, 60, Math.random()*5, 'images/Star.png', 1000);
 let star2 = new SpecialItem(-20000, 145, Math.random()*5, 'images/Star.png', 1000);
 let star3 = new SpecialItem(-20000, 230, Math.random()*5, 'images/Star.png', 1000);
-let heart = new SpecialItem(-8000, 230, Math.random()*5, 'images/Heart.png', 0);
-let heart2 = new SpecialItem(-20000, 145, Math.random()*5, 'images/Heart.png', 0);
-let heart3 = new SpecialItem(-20000, 60, Math.random()*5, 'images/Heart.png', 0);
+let heart = new SpecialItem(-6000, 230, Math.random()*5, 'images/Heart.png', 0);
+let heart2 = new SpecialItem(-12000, 145, Math.random()*5, 'images/Heart.png', 0);
+let heart3 = new SpecialItem(-18000, 60, Math.random()*5, 'images/Heart.png', 0);
 let bonusItems = [blueGem, blueGem2, blueGem3, greenGem, greenGem2, greenGem3, orangeGem, orangeGem2, orangeGem3, key, key2, key3, star, star2, star3, heart, heart2, heart3];
 
 // This listens for key presses and sends the keys to your
